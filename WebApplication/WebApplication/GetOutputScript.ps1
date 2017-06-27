@@ -1,5 +1,5 @@
 #get the most recent deployment for the resource group
-$lastRgDeployment = Get-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName |
+$lastRgDeployment = Get-AzureRmResourceGroupDeployment -ResourceGroupName "newresourcgroup" |
     Sort Timestamp -Descending |
         Select -First 1        
 
