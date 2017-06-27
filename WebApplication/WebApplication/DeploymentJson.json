@@ -1,0 +1,114 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "EnvironmentName": {
+      "type": "string",
+      "defaultValue": "Dev"
+    },   
+    "SiteName": {
+      "type": "string",
+      "defaultValue": "web"
+    },
+    "HostingPlanName": {
+      "type": "string",
+      "defaultValue": "newhostingplkanname"
+    },
+    "HostingPlanSku": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard",
+        "Premium"
+      ],
+      "defaultValue": "Free"
+    },
+    "HostingPlanTierName": {
+      "type": "string",
+      "allowedValues": [
+        "F1",
+        "D1",
+        "B1",
+        "S1",
+        "P1"
+      ],
+      "defaultValue": "F1"
+    },
+    "ServerName": {
+      "type": "string",
+      "defaultValue": "qlty2rd0qe"
+    },
+    "StorageName": {
+      "type": "string",
+      "defaultValue": "teststorage"
+    },
+    "StorageLocation": {
+      "type": "string",
+      "defaultValue": "Central US"
+    },
+    "UseEncryption": {
+      "type": "string",
+      "defaultValue": "true"
+    }    
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-06-15",
+      "dependsOn": [ ],
+      "location": "[parameters('StorageLocation')]",
+      "name": "[parameters('StorageName')]",
+      "properties": {
+        "accountType": "Standard_LRS"
+      },
+      "type": "Microsoft.Storage/storageAccounts"
+    },   
+    {
+      "apiVersion": "2015-08-01",
+      "type": "Microsoft.Web/serverfarms",
+      "name": "[parameters('HostingPlanName')]",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "tier": "[parameters('HostingPlanSku')]",
+        "name": "[parameters('HostingPlanTierName')]",
+        "capacity": 0
+      },
+      "properties": {
+        "numberOfWorkers": 1
+      }
+
+    },   
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('SiteName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('HostingPlanName'))]": "Resource",
+        "displayName": "Website"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverfarms/', parameters('HostingPlanName'))]"
+      ],
+      "properties": {
+        "name": "[parameters('SiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('HostingPlanName'))]",
+        "siteConfig": {
+          "appSettings": [
+            {
+              "Name": "EnvironmentName",
+              "Value": "[parameters('EnvironmentName')]"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "storageaccountkey": {
+      "value": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('StorageName')), '2015-06-15').key1]",
+      "type": "string"
+    }
+  }
+}
