@@ -1,5 +1,5 @@
 #get the most recent deployment for the resource group
-$lastRgDeployment = Get-AzureRmResourceGroupDeployment -ResourceGroupName "newresourcgroup" |
+$lastRgDeployment = Get-AzureRmResourceGroupDeployment -ResourceGroupName "TestvNamanRSGRp" |
     Sort Timestamp -Descending |
         Select -First 1        
 
@@ -15,14 +15,14 @@ if(!$deploymentOutputParameters)
     throw "No output parameters could be found for the last deployment of '$resourceGroupName'."
 }
 
-$outputParameter = $deploymentOutputParameters.Item($rgDeploymentOutputParameterName)
+$outputParameter = $deploymentOutputParameters.Item("storageaccountkey")
 
 if(!$outputParameter)
 {
-    throw "No output parameter could be found with the name of '$rgDeploymentOutputParameterName'."
+    throw "No output parameter could be found with the name of 'storageaccountkey'."
 }
 
 $outputParameterValue  = $outputParameter.Value
 
 # From here, use $outputParameterValue, for example:
-Write-Host "##vso[task.setvariable variable=$rgDeploymentOutputParameterName;]$outputParameterValue"
+Write-Host "##vso[task.setvariable variable=storageaccountkey;]$outputParameterValue"
