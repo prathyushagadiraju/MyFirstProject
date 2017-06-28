@@ -8,7 +8,7 @@
     },   
     "SiteName": {
       "type": "string",
-      "defaultValue": "TestSomeThingNewNmeLates"
+      "defaultValue": "eeresdf"
     },
     "HostingPlanName": {
       "type": "string",
@@ -23,7 +23,15 @@
         "Standard",
         "Premium"
       ],
-      "defaultValue": "Basic"
+      "defaultValue": "Free"
+    },
+	"ServerName": {
+      "type": "string",
+      "defaultValue": "servernamenewonenam"
+    },
+	 "ServerLocation": {
+      "type": "string",
+      "defaultValue": "West US"
     },
     "HostingPlanTierName": {
       "type": "string",
@@ -34,11 +42,11 @@
         "S1",
         "P1"
       ],
-      "defaultValue": "B1"
+      "defaultValue": "F1"
     },    
     "StorageName": {
       "type": "string",
-      "defaultValue": "newstaoteaccounttestname"
+      "defaultValue": "derrergss"
     },
     "StorageLocation": {
       "type": "string",
