@@ -33,6 +33,17 @@
       "type": "string",
       "defaultValue": "West US"
     },
+	"ServerAdmin": {
+      "type": "string",
+      "defaultValue": "asminusernamepol"
+    },
+	"ServerPassword": {
+      "type": "securestring"
+    },
+	 "UseEncryption": {
+      "type": "string",
+      "defaultValue": "true"
+    },
     "HostingPlanTierName": {
       "type": "string",
       "allowedValues": [
@@ -67,7 +78,33 @@
         "accountType": "Standard_LRS"
       },
       "type": "Microsoft.Storage/storageAccounts"
-    },   
+    },
+	{
+      "name": "[parameters('ServerName')]",
+      "type": "Microsoft.Sql/servers",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2014-04-01",
+      "properties": {
+        "administratorLogin": "[parameters('ServerAdmin')]",
+        "administratorLoginPassword": "[parameters('ServerPassword')]",
+        "version": "12.0"
+      },
+      "resources": [
+        {
+          "apiVersion": "2014-04-01-preview",
+          "name": "SQLServerFirewallRules",
+          "type": "firewallrules",
+          "location": "[parameters('ServerLocation')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Sql/servers', parameters('ServerName'))]"
+          ],
+          "properties": {
+            "startIpAddress": "121.107.0.0",
+            "endIpAddress": "121.107.255.255"
+          }
+        }
+      ]
+    },	
     {
       "apiVersion": "2015-08-01",
       "type": "Microsoft.Web/serverfarms",
