@@ -24,6 +24,6 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: published_webapp
-        path: '**obj/Release/Package**'
+        path: '**/obj/Release/Package/**'
         
   
