@@ -15,8 +15,15 @@ jobs:
       run: nuget restore WebApplication/WebApplication.sln
       
     - name: Build my Web code
-      run: msbuild WebApplication/WebApplication.sln /p:Configuration=Release /p:DeployTarget=Package /p:WebPublishMethod=Package /p:PackageAsSingleFile=true
+      run: msbuild WebApplication/WebApplication.sln /p:Configuration=Release /p:DeployTarget=Package /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:DeployOnBuild=true
   
     - name: Build my SQL code
       run: msbuild WebApplication/Database1/Database1.sqlproj
+      
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: published_webapp
+        path: bin\Release\Publish
+        
   
