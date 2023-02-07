@@ -15,7 +15,7 @@ jobs:
       run: nuget restore WebApplication/WebApplication.sln
       
     - name: Build my Web code
-      run: msbuild WebApplication/WebApplication.sln /p:Configuration=Release
+      run: msbuild WebApplication/WebApplication.sln /p:Configuration=Release /p:DeployTarget=Package /p:WebPublishMethod=Package /p:PackageAsSingleFile=true
   
     - name: Build my SQL code
       run: msbuild WebApplication/Database1/Database1.sqlproj
