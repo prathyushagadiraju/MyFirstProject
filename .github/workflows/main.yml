@@ -1,0 +1,22 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} learning github actions
+on: workflow_dispatch
+jobs:
+  build-my-code:
+    runs-on: windows-2019 
+    steps:
+    - name: check out code
+      uses: actions/checkout@v2
+      
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+    
+    - name: Restore nuget packages
+      run: nuget restore WebApplication/WebApplication.sln
+      
+    - name: Build my Web code
+      run: VSBuild@1 WebApplication/WebApplication.sln /p:Configuration=Release /p:DeployOnBuild=true;DeployTarget=Package;PublishProfile=Release
+  
+    - name: Build my SQL code
+      run: VSBuild@1 WebApplication/Database1/Database1.sqlproj
+  
