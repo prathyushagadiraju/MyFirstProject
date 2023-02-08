@@ -8,7 +8,7 @@ on:
 
 jobs:
     TriggerAzurePipeline:
-        name: Call Azure Pipeline
+        name: Call Azure Pipeline from Github Actions
         runs-on: windows-latest
         steps:
         - name: Azure Pipelines Action
