@@ -1,6 +1,9 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} learning github actions
-on: workflow_dispatch
+on: 
+  push:
+    branches:
+    - master
 jobs:
   build-my-code:
     runs-on: windows-2019 
