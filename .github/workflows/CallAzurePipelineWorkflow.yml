@@ -1,10 +1,6 @@
 name: TriggerAzurePipeline
 
-# Run this workflow every time a commit gets pushed to master branch
-on:
-  push:
-    branches:
-    - master
+on: workflow_dispatch
 
 jobs:
     TriggerAzurePipeline:
