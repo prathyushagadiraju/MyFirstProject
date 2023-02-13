@@ -33,6 +33,7 @@ jobs:
         path: '**/obj/Release/Package/**'
   
   deploy-my-appservice:
+    needs: build-my-C-code-job
     runs-on: windows-2019
     steps:
       - name: Run Azure webapp deploy action
