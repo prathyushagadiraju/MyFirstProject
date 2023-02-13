@@ -13,7 +13,7 @@ jobs:
     env:
       job_variable: Hello
     steps:
-      - name: "Say Hello Mona it's Monday"
+      - name: "Greet Ramesh"
         env:
           step_variable: Ramesh
         run: echo "$job_variable $step_variable. Today is $workflow_variable_day"        
