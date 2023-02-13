@@ -1,5 +1,5 @@
 name: learning-github
-run-name: ${{ github.actor }} first github run
+run-name: learning basics of github
 
 on: 
   push:
