@@ -5,6 +5,7 @@ on:
 
 env:
   DAY_OF_WEEK: Monday
+  pass: ${{ secrets.PASSWORD }}
 
 jobs:
   greeting_job:
@@ -13,6 +14,8 @@ jobs:
       Greeting: Hello
     steps:
       - name: "Say Hello Mona it's Monday"
-        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"        
         env:
           First_Name: Mona
+      - name: "Password"
+        run: echo "$pass"
