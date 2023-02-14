@@ -1,4 +1,4 @@
-name: Variable example
+name: va
 
 on:
   workflow_dispatch
