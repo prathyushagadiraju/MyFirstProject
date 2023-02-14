@@ -1,5 +1,5 @@
-name: learning-github
-run-name: learning basics of github
+name: te
+run-name: lr
 
 on: 
   push:
