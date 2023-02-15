@@ -29,6 +29,15 @@ jobs:
           name: buildartifact
           path: '**/obj/Release/Package/**'
      
-   
+   deploy-mycode: 
+      needs: firstjob
+      runs-on: windows-2019
+      steps:
+       - name: deploy my application
+         uses: Azure/webapps-deploy@v2.2.4
+         with: 
+            app-name: testapp
+            publish-profile: $ {{ secrets.PUBLISHPROFILE }}
+            package: '**/obj/Release/Package/**'
      
    
