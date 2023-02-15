@@ -13,4 +13,3 @@ jobs:
               azure-devops-project-url: https://dev.azure.com/namantraining/MyFirstProject
               azure-pipeline-name: 'MyFirstBuildDefinition'
               azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
-			  
