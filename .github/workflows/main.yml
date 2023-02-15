@@ -1,0 +1,18 @@
+name: my_variable_example
+
+on:
+  workflow_dispatch
+
+env:
+  workflow_variable_1 : workflow1
+  
+jobs:
+  variable_job:
+    runs-on : windows-latest
+    env:
+      job_variable_1 : jobvariable1
+    steps:
+    - name: "Step1"
+      env: 
+        steps_variable: stepvariable1
+      run : echo "$job_variable_1 $steps_variable $workflow_variable_1"
