@@ -1,0 +1,16 @@
+name: triggerazurepipeline
+
+on: workflow_dispatch
+
+jobs:
+  triggermyazurepipeline:
+    name: Calling my azure pieline
+    runs-on: windows-2019
+    steps:
+      - name: Azurepipelineaction
+        uses: Azure/pipelines@v1.2
+        with:
+          azure-devops-project-url: https://namantraining.visualstudio.com/MyFirstProject
+          azure-pipeline-name: MyFirstBuildDefinition
+          azure-devops-token: $ {{ secrets.TOKEN }}
+          
