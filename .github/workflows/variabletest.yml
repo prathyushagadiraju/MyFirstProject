@@ -10,7 +10,7 @@ jobs:
       - name: Azurepipelineaction
         uses: Azure/pipelines@v1.2
         with:
-          azure-devops-project-url: https://namantraining.visualstudio.com/MyFirstProject
+          azure-devops-project-url: https://dev.azure.com/namantraining/MyFirstProject
           azure-pipeline-name: MyFirstBuildDefinition
           azure-devops-token: $ {{ secrets.TOKEN }}
           
