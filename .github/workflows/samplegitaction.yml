@@ -1,4 +1,4 @@
-name: learning-github
+name: sample-githubaction
 run-name: learning github actions for first time
 
 on:
