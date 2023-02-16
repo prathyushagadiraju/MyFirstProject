@@ -1,5 +1,5 @@
 name: sample-githubaction
-run-name: triggering github actions for first time
+run-name: triggering github actions for second time
 
 on:
   push:
