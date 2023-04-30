@@ -1,10 +1,10 @@
 name: sample-githubaction
-run-name: learning github actions for first time
+run-name: triggering github actions for second time
 
 on:
   push:
    branches:
-    - master
+    - develop-sample  
     
 jobs:
    firstjob:  
